@@ -17,21 +17,21 @@ app.get('/', (req, res) => {
     res.send("Home page")
 })
 
-app.post('/home', upload.single("file"), async(req, res) => {
+app.post('/home',async(req, res) => {
     const data = req.body
-    const fileBuffer = req.file.buffer;
-    // Create the 'uploads' directory if it doesn't exist
-    const uploadsDir = path.join(__dirname, "../uploads");
-    fs.mkdirSync(uploadsDir, { recursive: true });
+    // const fileBuffer = req.file.buffer;
+    // // Create the 'uploads' directory if it doesn't exist
+    // const uploadsDir = path.join(__dirname, "../uploads");
+    // fs.mkdirSync(uploadsDir, { recursive: true });
 
-    // Save the file to the file system (if a file is provided)
-    let filePath = null;
-    let fileName = null;
-    if (req.file) {
-      fileName = req.file.originalname;
-      filePath = path.join(uploadsDir, fileName);
-      await fs.promises.writeFile(filePath, req.file.buffer);
-    }
+    // // Save the file to the file system (if a file is provided)
+    // let filePath = null;
+    // let fileName = null;
+    // if (req.file) {
+    //   fileName = req.file.originalname;
+    //   filePath = path.join(uploadsDir, fileName);
+    //   await fs.promises.writeFile(filePath, req.file.buffer);
+    // }
 
     console.log(data)
 })
