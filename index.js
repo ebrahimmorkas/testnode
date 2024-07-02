@@ -1,41 +1,23 @@
-const express = require('express');
-const multer = require("multer");
-const fs = require("fs");
-const path = require("path");
-
+const express = require("express");
 const app = express();
+const bodyParser = require('body-parser');
 
-const upload = multer({
-    storage: multer.memoryStorage(),
-    limits: {
-      fileSize: 100 * 1024 * 1024, // 100MB (adjust as needed)
-    },
-  });
-  
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-    res.send("Home page")
+app.use(express.json())
+
+app.get("/", (req, res) => {
+  res.send("Hello")
 })
 
-app.post('/home',async(req, res) => {
-    const data = req.body
-    // const fileBuffer = req.file.buffer;
-    // // Create the 'uploads' directory if it doesn't exist
-    // const uploadsDir = path.join(__dirname, "../uploads");
-    // fs.mkdirSync(uploadsDir, { recursive: true });
-
-    // // Save the file to the file system (if a file is provided)
-    // let filePath = null;
-    // let fileName = null;
-    // if (req.file) {
-    //   fileName = req.file.originalname;
-    //   filePath = path.join(uploadsDir, fileName);
-    //   await fs.promises.writeFile(filePath, req.file.buffer);
-    // }
-
-    console.log(data)
+app.post('/', (req, res) => {
+  const data = req.body;
+  console.log("HELLOHELLOHELLOHELLOHELLO")
+  console.log(data);
+  res.send(data);
 })
 
-app.listen(8000, () => {
-    console.log("App Listening on 8000");
+app.listen(8080, () => {
+  console.log("Listening on port 8080");
 })
