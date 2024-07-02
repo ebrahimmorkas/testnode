@@ -11,8 +11,10 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", upload.single("file"), async (req, res) => {
+  console.log("Request received")
   try {
     if (!req.file) {
+      console.log("File is present")
       return res.status(400).json({ error: "No file uploaded" });
     }
 
